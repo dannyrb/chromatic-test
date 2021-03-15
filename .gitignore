@@ -6,6 +6,7 @@ package-lock.json
 
 # This isn't helpful to check-in
 yarn-error.log
+build-storybook.log
 
 # Don't check in an .npmrc file
 .npmrc

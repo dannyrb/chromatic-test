@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +18,11 @@
     "@storybook/addon-links": "^6.1.21",
     "@storybook/node-logger": "^6.1.21",
     "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.1.21"
+    "@storybook/react": "6.0.28",
+    "css-loader": "^5.1.2",
+    "sass-loader": "10.1.1",
+    "style-loader": "^2.0.0",
+    "svg-url-loader": "^7.1.1"
   },
   "dependencies": {}
 }
