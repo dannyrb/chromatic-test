@@ -1,7 +1,40 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+
+defaults: &defaults
+  docker:
+    - image: circleci/node:14.15.0
+      environment:
+        TERM: xterm # Enable colors in term
+        QUICK_BUILD: true
+  working_directory: ~/repo
+
+jobs:
+  STORY_BOOK:
+    <<: *defaults
+    steps:
+      - run: yarn -v
+      - checkout:
+          post:
+            - git fetch --all
+      - restore_cache:
+          name: Restore Yarn and Cypress Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages-
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          paths:
+            - ~/.cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      # I'm not sure if the project token is supposed to be a secret :x
+      - run:
+          name: Chromatic Storybook Magic
+          command: npx chromatic --project-token=0b880029a1f2
+
 workflows:
-  node-tests:
+  pr_or_merge:
     jobs:
-      - node/test
+      - STORY_BOOK
