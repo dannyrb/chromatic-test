@@ -22,9 +22,9 @@ jobs:
       #     keys:
       #       - yarn-packages-{{ checksum "yarn.lock" }}
       #       - yarn-packages-
-      # - run:
-      #     name: Install Dependencies
-      #     command: yarn install --frozen-lockfile
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       # - save_cache:
       #     name: Save Yarn Package Cache
       #     paths:
