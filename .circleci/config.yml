@@ -22,18 +22,19 @@ jobs:
       #     keys:
       #       - yarn-packages-{{ checksum "yarn.lock" }}
       #       - yarn-packages-
-      # - run:
-      #     name: Install Dependencies
-      #     command: yarn install --frozen-lockfile
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       # - save_cache:
       #     name: Save Yarn Package Cache
       #     paths:
       #       - ~/.cache
       #     key: yarn-packages-{{ checksum "yarn.lock" }}
       # I'm not sure if the project token is supposed to be a secret :x
+      # MERGE TO MASTER SHOULD USE THIS FLAG: --auto-accept-changes
       - run:
           name: Chromatic Storybook Magic
-          command: npx chromatic --project-token=0b880029a1f2
+          command: npx chromatic --exit-once-uploaded --exit-zero-on-changes
 
 workflows:
   pr_or_merge:
