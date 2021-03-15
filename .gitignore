@@ -1,2 +1,8 @@
+# Keep those uncompressed deps out of here
 node_modules/
+
+# We use yarn, not NPM
 package-lock.json
+
+# This isn't helpful to check-in
+yarn-error.log
